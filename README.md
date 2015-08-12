@@ -3,7 +3,7 @@
 [![Docker Repository on Quay.io](https://quay.io/repository/azavea/spark-jobserver/status "Docker Repository on Quay.io")](https://quay.io/repository/azavea/spark-jobserver)
 [![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)](https://github.com/azavea/docker-spark-jobserver/blob/develop/LICENSE)
 
-A `Dockerfile` based off of [`java:7`](https://registry.hub.docker.com/_/java/)that an instance of [Spark Job Server](https://github.com/spark-jobserver/spark-jobserver).
+A `Dockerfile` based off of [`azavea/spark`](https://quay.io/repository/azavea/spark) that launches an instance of [Spark Job Server](https://github.com/spark-jobserver/spark-jobserver).
 
 ## Usage
 
