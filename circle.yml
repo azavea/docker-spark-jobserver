@@ -15,7 +15,7 @@ test:
 
 deployment:
   latest:
-    branch: master
+    branch: develop
     commands:
       - docker push quay.io/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME:7}:${CIRCLE_SHA1:0:7}
       - docker tag -f quay.io/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME:7}:${CIRCLE_SHA1:0:7} quay.io/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME:7}:latest
