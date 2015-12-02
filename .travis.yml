@@ -1,0 +1,33 @@
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+install:
+  - docker build -t quay.io/${TRAVIS_REPO_SLUG:0:6}/${TRAVIS_REPO_SLUG:14}:${TRAVIS_COMMIT:0:7} .
+
+script:
+  - docker run -d --name spark-jobserver quay.io/${TRAVIS_REPO_SLUG:0:6}/${TRAVIS_REPO_SLUG:14}:${TRAVIS_COMMIT:0:7}
+  - docker exec spark-jobserver './test.sh'
+
+before_deploy:
+  - docker login -e . -p "${QUAY_PASSWORD}" -u "${QUAY_USER}" quay.io
+
+deploy:
+  - provider: script
+    script: ".travis/deploy.sh"
+    on:
+      repo: azavea/docker-spark-jobserver
+      branch: develop
+  - provider: script
+    script: ".travis/deploy.sh"
+    on:
+      repo: azavea/docker-spark-jobserver
+      tags: true
+
+notifications:
+  slack:
+    secure: Jk/v0ZnbuTRVs7OpU7o8Kb3Nmgu9RgrofFXt1LbfMdkmn6WiSoLkAMXIpIyqLNNy8p7NKjC534MN8q7RCQmRED9qeneHFlblR8UPgQACXGdBPxDhpmUnPZadGx/GabbzAgksRqo1I8iBHL+LX6szAB8p87AEsXuocIkrff8M8MEAGdr6aHYEPeTKJ8BHgbVh9WpCcN6+TJ2/ijoZCs1bQGKzw/XTIo+Jyz+mMbw22sUmHUbN0ANBEZZTWBTpoljnwAnSjHm3M2rL2xmy1fpGm8SDMNIR7a3c5ASXl6mKVU8Yg/0i5bN6NqXJBmvqgujhKH4JXMBUV+BUxr/ASOr30yEGGHwfC7AKD21BQ4LmXrWCToLII228TKfo3dJ94FqTGw5QCQzbEmRCT5Zccm6nkL2IoyxjQxxeK+QIMlfbjMUSyfi3KvPbV6ShGwiSeBB2DAJ5xT4rBs8LvfjMDWUoZeLc6XmTVrNe4vlJmj7AQfaDcHf4gsbkqu4ZIZ1TfOwuIoZa9odxG9O46goT8QHmpR9gwmVy/m4R0xYtw5NnFpmMJ9ry/HnYy35C1M3ZHFSq1daq96/Zj1spMvZEq05JKWO/h07GZo12fmz4OsTMwHuxt1d+Ke1jLFDS7Y7QsgjJ1B5qu2iYXGYtca2xYpAmgoe5Y/9N68uzh5nNwkSwLxc=
+
