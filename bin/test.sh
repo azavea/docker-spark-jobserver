@@ -2,11 +2,11 @@
 
 set -e
 
-SPARK_JOBSERVER_VERSION="0.5.2"
+SPARK_JOBSERVER_VERSION="0.6.1"
 
-git clone https://github.com/azavea/spark-jobserver.git /tmp/spark-jobserver
-pushd /tmp/spark-jobserver
-git checkout "v${SPARK_JOBSERVER_VERSION}-azavea"
+apt-get update && apt-get install -y openjdk-7-jdk
+
+pushd /usr/local/src/spark-jobserver-${SPARK_JOBSERVER_VERSION}
 
 sbt job-server-tests/package
 
