@@ -1,7 +1,5 @@
-## 0.1.1
+## 0.6.1
 
-- Defer Scala and Spark installation to base images.
-
-## 0.1.0
+### `fd5f03f`
 
 - Initial release.
