@@ -10,7 +10,7 @@ A `Dockerfile` based off of [`azavea/spark`](https://quay.io/repository/azavea/s
 First, build the container with either of the following commands:
 
 ```bash
-$ docker build -t azavea/spark-jobserver .
+$ docker build -t quay.io/azavea/spark-jobserver:latest .
 ```
 
 Or:

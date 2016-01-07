@@ -1,5 +1,5 @@
 DOCKER_RUN_FLAGS = --detach -p 8090:8090 --name spark-jobserver
-DOCKER_IMAGE_NAME = azavea/spark-jobserver
+DOCKER_IMAGE_NAME = quay.io/azavea/spark-jobserver:latest
 
 JOBSERVER_FLAGS =
 
