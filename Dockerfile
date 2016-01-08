@@ -13,7 +13,8 @@ RUN mkdir -p ${SPARK_JOBSERVER_SRC_HOME} ${SPARK_JOBSERVER_HOME} \
 WORKDIR ${SPARK_JOBSERVER_SRC_HOME}/spark-jobserver-${SPARK_JOBSERVER_VERSION}
 
 RUN sbt ++${SCALA_VERSION} job-server-extras/assembly \
-	&& mv job-server-extras/target/scala-2.10/spark-job-server.jar ${SPARK_JOBSERVER_HOME}
+  && mv job-server-extras/target/scala-2.10/spark-job-server.jar ${SPARK_JOBSERVER_HOME} \
+  && rm -rf ~/.ivy2/cache/
 
 COPY etc/spark-jobserver.conf ${SPARK_JOBSERVER_HOME}/
 COPY etc/log4j.properties ${SPARK_JOBSERVER_HOME}/
